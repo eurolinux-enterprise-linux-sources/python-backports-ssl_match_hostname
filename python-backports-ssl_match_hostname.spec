@@ -2,7 +2,7 @@
 
 Name:           python-backports-ssl_match_hostname
 Version:        3.4.0.2
-Release:        2%{?dist}
+Release:        5%{?dist}
 Summary:        The ssl.match_hostname() function from Python 3
 
 License:        Python
@@ -49,6 +49,10 @@ rm %{buildroot}%{python_sitelib}/backports/__init__.py*
 
 
 %changelog
+* Thu Sep 29 2016 Miro Hrončok <mhroncok@redhat.com> - 3.4.0.2-5
+- Bump the release to make NVR gretaer than on EPEL6
+Resolves: rhbz#1231253
+
 * Thu Mar 12 2015 Matej Stuchlik <mstuchli@redhat.com> - 3.4.0.2-2
 - Rebuild for RHEL 6.7
 Resolves: rhbz#1176258
