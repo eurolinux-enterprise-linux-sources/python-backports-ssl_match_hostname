@@ -1,8 +1,8 @@
 %global module_name backports.ssl_match_hostname
 
 Name:           python-backports-ssl_match_hostname
-Version:        3.4.0.2
-Release:        4%{?dist}
+Version:        3.5.0.1
+Release:        1%{?dist}
 Summary:        The ssl.match_hostname() function from Python 3
 
 License:        Python
@@ -11,8 +11,8 @@ Source0:        http://pypi.python.org/packages/source/b/%{module_name}/%{module
 
 BuildArch:      noarch
 BuildRequires:  python2-devel
-BuildRequires:  python-setuptools
 Requires:       python-backports
+Requires:       python-ipaddress
 
 %description
 The Secure Sockets layer is only actually secure if you check the hostname in
@@ -25,13 +25,13 @@ a match_hostname() function for performing this check instead of requiring
 every application to implement the check separately.
 
 This backport brings match_hostname() to users of earlier versions of Python.
-The actual code inside comes verbatim from Python 3.2.
+The actual code is only slightly modified from Python 3.5.
 
 
 %prep
 %setup -qn %{module_name}-%{version}
-mv src/backports/ssl_match_hostname/README.txt ./
-mv src/backports/ssl_match_hostname/LICENSE.txt ./
+cp backports/ssl_match_hostname/README.txt ./
+cp backports/ssl_match_hostname/LICENSE.txt ./
 
 
 %build
@@ -49,6 +49,10 @@ rm %{buildroot}%{python_sitelib}/backports/__init__.py*
 
 
 %changelog
+* Tue Oct 10 2017 Iryna Shcherbina <ishcherb@redhat.com> - 3.5.0.1-1
+- Update to 3.5.0.1
+Resolves: rhbz#1500373
+
 * Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 3.4.0.2-4
 - Mass rebuild 2013-12-27
 
