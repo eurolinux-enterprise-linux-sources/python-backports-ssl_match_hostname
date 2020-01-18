@@ -1,5 +1,5 @@
 
-The ssl.match_hostname() function from Python 3.2
+The ssl.match_hostname() function from Python 3.4
 =================================================
 
 The Secure Sockets layer is only actually *secure*
@@ -11,7 +11,7 @@ that you are trying to reach.
 But the matching logic, defined in `RFC2818`_,
 can be a bit tricky to implement on your own.
 So the ``ssl`` package in the Standard Library of Python 3.2
-now includes a ``match_hostname()`` function
+and greater now includes a ``match_hostname()`` function
 for performing this check instead of requiring every application
 to implement the check separately.
 
@@ -36,7 +36,17 @@ will also need to install the ``ssl`` distribution
 from the Python Package Index to use code like that shown above.
 
 Brandon Craig Rhodes is merely the packager of this distribution;
-the actual code inside comes verbatim from Python 3.2.
+the actual code inside comes verbatim from Python 3.4.
+
+History
+-------
+* This function was introduced in python-3.2
+* It was updated for python-3.4a1 for a CVE 
+  (backports-ssl_match_hostname-3.4.0.1)
+* It was updated from RFC2818 to RFC 6125 compliance in order to fix another
+  security flaw for python-3.3.3 and python-3.4a5
+  (backports-ssl_match_hostname-3.4.0.2)
+
 
 .. _RFC2818: http://tools.ietf.org/html/rfc2818.html
 
