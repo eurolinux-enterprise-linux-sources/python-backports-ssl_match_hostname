@@ -1,0 +1,24 @@
+diff -up backports.ssl_match_hostname-3.2a3/src/backports/ssl_match_hostname/__init__.py.orig backports.ssl_match_hostname-3.2a3/src/backports/ssl_match_hostname/__init__.py
+--- backports.ssl_match_hostname-3.2a3/src/backports/ssl_match_hostname/__init__.py.orig	2010-10-15 17:40:13.000000000 -0500
++++ backports.ssl_match_hostname-3.2a3/src/backports/ssl_match_hostname/__init__.py	2013-02-05 17:24:13.706427017 -0600
+@@ -2,7 +2,7 @@
+ 
+ import re
+ 
+-__version__ = '3.2a3'
++__version__ = '3.2.2'
+ 
+ class CertificateError(ValueError):
+     pass
+@@ -37,8 +37,9 @@ def match_hostname(cert, hostname):
+             if _dnsname_to_pat(value).match(hostname):
+                 return
+             dnsnames.append(value)
+-    if not san:
+-        # The subject is only checked when subjectAltName is empty
++    if not dnsnames:
++        # The subject is only checked when there is no dNSName entry
++        # in subjectAltName
+         for sub in cert.get('subject', ()):
+             for key, value in sub:
+                 # XXX according to RFC 2818, the most specific Common Name
